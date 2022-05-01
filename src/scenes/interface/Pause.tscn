@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/interface/Pause.gd" type="Script" id=1]
+[ext_resource path="res://assets/world/plx-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/interface/S.png" type="Texture" id=3]
+[ext_resource path="res://assets/interface/P.png" type="Texture" id=4]
+[ext_resource path="res://assets/interface/U.png" type="Texture" id=5]
+[ext_resource path="res://assets/interface/E.png" type="Texture" id=6]
+[ext_resource path="res://assets/interface/A.png" type="Texture" id=7]
+
+[node name="Pause" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 0.356863 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -20.0
+margin_right = 50.0
+margin_bottom = 20.0
+
+[node name="PauseBox" type="HBoxContainer" parent="Container"]
+margin_right = 100.0
+margin_bottom = 16.0
+
+[node name="P" type="TextureRect" parent="Container/PauseBox"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+
+[node name="A" type="TextureRect" parent="Container/PauseBox"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+
+[node name="U" type="TextureRect" parent="Container/PauseBox"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 16.0
+texture = ExtResource( 5 )
+
+[node name="S" type="TextureRect" parent="Container/PauseBox"]
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+
+[node name="E" type="TextureRect" parent="Container/PauseBox"]
+margin_left = 80.0
+margin_right = 96.0
+margin_bottom = 16.0
+texture = ExtResource( 6 )
+
+[node name="D" type="TextureRect" parent="Container/PauseBox"]
+margin_left = 100.0
+margin_right = 100.0
+margin_bottom = 16.0
+
+[node name="Continue" type="Button" parent="Container"]
+margin_top = 20.0
+margin_right = 100.0
+margin_bottom = 40.0
+text = "Continue"
+
+[node name="Exit" type="Button" parent="Container"]
+margin_top = 44.0
+margin_right = 100.0
+margin_bottom = 64.0
+text = "Exit"
+
+[connection signal="pressed" from="Container/Continue" to="." method="_on_Continue_pressed"]
