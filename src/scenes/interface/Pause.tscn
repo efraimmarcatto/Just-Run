@@ -82,3 +82,4 @@ margin_bottom = 64.0
 text = "Exit"
 
 [connection signal="pressed" from="Container/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Container/Exit" to="." method="_on_Exit_pressed"]

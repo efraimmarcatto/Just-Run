@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/player/red/jump.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemies/enemy01/Enemy.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2.5, 15 )
+
+[node name="Enemy" type="KinematicBody2D"]
+position = Vector2( 1, 0 )
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "fly"
+playing = true
+flip_h = true
+
+[node name="ShotPosition" type="Position2D" parent="."]
+position = Vector2( -18, -2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ShooterTimer" type="Timer" parent="."]
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="Collision" type="CollisionShape2D" parent="HitArea"]
+position = Vector2( -2, -2 )
+shape = SubResource( 4 )
+
+[connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_HitArea_body_entered"]
